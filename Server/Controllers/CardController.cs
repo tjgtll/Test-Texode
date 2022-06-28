@@ -155,7 +155,7 @@ namespace Server.Controllers
                 {
                     Directory.CreateDirectory(path);
                 }
-                string filename = model.ProfileImage.FileName;
+                string filename = $"{Guid.NewGuid().ToString()}.png";
                 using (var fileStream = new FileStream(Path.Combine(path, filename), FileMode.Create))
                 {
                     await model.ProfileImage.CopyToAsync(fileStream);
