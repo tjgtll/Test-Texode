@@ -1,0 +1,235 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="Main" Height="450" Width="800">
+    <Grid Background="#007acc" >
+        <DockPanel Width="auto">
+            <DataGrid   ColumnWidth="*" 
+                        CanUserAddRows="false"
+                        HeadersVisibility="Column"
+                        RowBackground="#252526" 
+                        BorderBrush="Gray" 
+                        FontSize="24" 
+                        Foreground="White"  
+                        x:Name="dataGrid1" 
+                        Background="#252526" 
+                        AutoGenerateColumns="False" 
+                        Margin="0,0,0,50">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" 
+                    TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#38383d" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Name" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Image" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="200" Source="{Binding Image}"  />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+        <DockPanel Width="auto" 
+                   Background="#2d2d30" 
+                   Margin="0,0,0,10"
+                   HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Bottom" >
+            <StackPanel Background="#252526" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Bottom" 
+                        Height="auto" 
+                        Margin="0,0,0,0"  
+                        Width="auto">
+                <Border BorderThickness="2"  
+                        BorderBrush="#464649">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Background="#3f3f46" Foreground="White" Content="Reload" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,10,10,10"  Width="75" Click="btnReloadCard_Click1" RenderTransformOrigin="1.581,-3.37"/>
+                        <Button Background="#3f3f46" Foreground="White" Content="Add" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,10,10,10"  Width="75" Click="btnAddCard_Click1" RenderTransformOrigin="1.581,-3.37"/>
+                        <Button Background="#3f3f46" Foreground="White" Content="Delete" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,10,10,10"  Width="75" Click="btnDeleteCard_Click1" RenderTransformOrigin="1.581,-3.37"/>
+                        <Button Background="#3f3f46" Foreground="White" Content="Update" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,10,10,10"  Width="75" Click="btnUpdateCard_Click" RenderTransformOrigin="1.581,-3.37"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </DockPanel>
+
+        <Grid x:Name="AddMenu"
+              Background="#CC000000"
+              Grid.RowSpan="2"
+              Grid.ColumnSpan="4"
+              Visibility="Hidden">
+
+            <StackPanel  
+                Background="#252526" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Border BorderThickness="1"
+                        BorderBrush="#464649">
+                    <StackPanel>
+                        <Border BorderThickness="0 0  0 1"
+                                BorderBrush="#464649">
+                            <TextBlock Text="Add Card"
+                                        FontSize="24"
+                                        Foreground="White"
+                                        TextAlignment="Center"/>
+                        </Border>
+                        <Grid Width="300">
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="13*"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock  Grid.Row="0" Grid.Column="0" 
+                                        FontSize="12" Foreground="White" 
+                                        VerticalAlignment="Bottom" 
+                                        HorizontalAlignment="Left" 
+                                        Margin="10,10,10,10" Text="Name" 
+                                        Width="75" 
+                                        RenderTransformOrigin="1.581,-3.37"></TextBlock>
+                            <TextBox Grid.Row="0" Grid.Column="0" 
+                                     x:Name="addTextBox" Background="#333337" 
+                                     Foreground="White" FontSize="12" 
+                                     VerticalAlignment="Bottom" 
+                                     HorizontalAlignment="Right" 
+                                     Margin="10,10,10,10" 
+                                     Text="" Width="126" RenderTransformOrigin="1.581,-3.37" Height="19.2"></TextBox>
+                            <Border Grid.Row="3" Grid.Column="0"
+                                    BorderThickness="0 1 0 1"
+                                    BorderBrush="#464649">
+                                <Image  Margin="0,0,0,0" Name="imgPhoto" Height="100" />
+                            </Border>
+                            <TextBlock  Grid.Row="2" Grid.Column="0" 
+                                        FontSize="12" Foreground="White"
+                                        VerticalAlignment="Bottom" 
+                                        HorizontalAlignment="Left" 
+                                        Margin="10,10,10,10" Text="Image" 
+                                        Width="75" RenderTransformOrigin="1.581,-3.37"></TextBlock>
+
+                            <Button  Grid.Row="2" Grid.Column="0"
+                                Background="#3f3f46" Foreground="White" 
+                                Width="126" HorizontalAlignment="Right"
+                                Margin="10,10,10,10" Name="btnAddMenuLoadImage" VerticalAlignment="Bottom"
+                                Click="btnAddMenuLoadImage_Click">Load
+                            </Button>
+                            <Button Grid.Row="4" Grid.Column="0" 
+                                    Background="#3f3f46" Foreground="White" 
+                                    Content="Add" VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Left" Margin="10,10,10,10"  
+                                    Width="126" Click="btnAddMenuAdd_Click" 
+                                    RenderTransformOrigin="1.581,-3.37"/>
+                            <Button Grid.Row="4" Grid.Column="0" 
+                                    Background="#3f3f46" Foreground="White" 
+                                    Content="Close" VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Right" Margin="10,10,10,10"  
+                                    Width="126" Click="btnAddMenuClose_Click" 
+                                    RenderTransformOrigin="1.581,-3.37"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+
+        </Grid>
+
+        <Grid x:Name="UpdateMenu"
+              Background="#CC000000"
+              Grid.RowSpan="2"
+              Grid.ColumnSpan="4"
+              Visibility="Hidden">
+
+            <StackPanel  
+                Background="#252526" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Border BorderThickness="1"
+                        BorderBrush="#464649">
+                    <StackPanel>
+                        <Border BorderThickness="0 0  0 1"
+                                BorderBrush="#464649">
+                            <TextBlock Text="Update Card"
+                                        FontSize="24"
+                                        Foreground="White"
+                                        TextAlignment="Center"/>
+                        </Border>
+                        <Grid Width="300">
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="12*"/>
+                                <RowDefinition Height="13*"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock  Grid.Row="0" Grid.Column="0" FontSize="12" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,10,10,10" Text="Name" Width="75" RenderTransformOrigin="1.581,-3.37"></TextBlock>
+                            <TextBox Grid.Row="0" Grid.Column="0" x:Name="updateTextBox" Background="#333337" Foreground="White" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,10,10,10" Text="" Width="126" RenderTransformOrigin="1.581,-3.37" Height="19.2"></TextBox>
+                            <Border Grid.Row="3" Grid.Column="0"
+                                    BorderThickness="0 1 0 1"
+                                    BorderBrush="#464649">
+                                <Image  Margin="0,0,0,0" Name="imgPhotoUpdate" Height="100" />
+                            </Border>
+                            <TextBlock  Grid.Row="2" Grid.Column="0" 
+                                        FontSize="12" Foreground="White"
+                                        VerticalAlignment="Bottom" 
+                                        HorizontalAlignment="Left" 
+                                        Margin="10,10,10,10" Text="Image" 
+                                        Width="75" RenderTransformOrigin="1.581,-3.37"></TextBlock>
+
+                            <Button  Grid.Row="2" Grid.Column="0"
+                                Background="#3f3f46" Foreground="White" 
+                                Width="126" HorizontalAlignment="Right"
+                                Margin="10,10,10,10" Name="btnLoadUpdate" VerticalAlignment="Bottom"
+                                Click="btnUpdateMenuImageLoad_Click">Load
+                            </Button>
+                            <Button Grid.Row="4" Grid.Column="0" 
+                                    Background="#3f3f46" Foreground="White" 
+                                    Content="Update" VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Left" Margin="10,10,10,10"  
+                                    Width="126" Click="btnUpdateMenuAdd_Click" 
+                                    RenderTransformOrigin="1.581,-3.37"/>
+                            <Button Grid.Row="4" Grid.Column="0" 
+                                    Background="#3f3f46" Foreground="White" 
+                                    Content="Close" VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Right" Margin="10,10,10,10"  
+                                    Width="126" Click="btnUpdateMenuClose_CLick" 
+                                    RenderTransformOrigin="1.581,-3.37"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
